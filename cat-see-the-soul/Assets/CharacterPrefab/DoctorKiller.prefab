@@ -209,6 +209,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2935857563873100849, guid: d61599bad4bdff140a2693da6937bcca, type: 3}
+      propertyPath: aIActionType2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935857563873100849, guid: d61599bad4bdff140a2693da6937bcca, type: 3}
       propertyPath: characterType
       value: 4
       objectReference: {fileID: 0}

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6271148132592710526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.68323505, y: 0.3835145, z: -2.50633}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,11 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a34ccab527a6564dab2d39362f80d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startFirstPersonality: 1
   isFirstPersonality: 1
   animator: {fileID: 0}
   animator2: {fileID: 0}
   mapPosition: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}
+  isMoveClockWise: 1
   characterType: 0
   characterType2: 0
   isDead: 0
@@ -56,12 +59,11 @@ MonoBehaviour:
   isHeared: 0
   aiType: 0
   aiType2: 0
-  moveDirection: {x: 0, y: 0}
   aIActionType: 0
   lookCharacterType: 0
   lookDistance: 3
   isFindTarget: 0
-  aIActionType2: 0
+  aIActionType2: 3
   lookCharacterType2: 0
   lookDistance2: 3
 --- !u!114 &4663258269555136010

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,10 +27,24 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.L))
         {
-            gameSpeed = _originGameSpeed * 3.5f;
+            gameSpeed = _originGameSpeed * 2.5f;
         }
         else
             gameSpeed = _originGameSpeed;
+        if (Input.GetKey(KeyCode.L) || Input.GetKeyUp(KeyCode.L))
+        {
+            var playerCharacter = GameObject.FindGameObjectWithTag("PlayerCharacter").GetComponent<Character>();
+            playerCharacter.animator.speed = GameManager.GetGameSpeed();
+            playerCharacter.animator2.speed = GameManager.GetGameSpeed();
+            foreach (var character in  CharacterManager.Instance.characters)
+            {
+                character.animator.speed = GameManager.GetGameSpeed();
+                character.animator2.speed = GameManager.GetGameSpeed();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator GameStart()

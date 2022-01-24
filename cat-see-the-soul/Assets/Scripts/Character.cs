@@ -21,6 +21,10 @@ public class Character : MonoBehaviour
 
     public Vector2 targetPosition;
 
+    public Vector2 moveDirection;
+
+    public bool isMoveClockWise = true;
+
     [Header("캐릭터 정보")]
     public CharacterType characterType;
     public CharacterType characterType2;
@@ -32,8 +36,7 @@ public class Character : MonoBehaviour
     public bool isHeared;
     public AIType aiType;
     public AIType aiType2;
-    [HideInInspector()]
-    public Vector2 moveDirection;
+    //[HideInInspector()]
 
     [Header("AI 행동 타입")]
     public AIActionType aIActionType;
@@ -58,7 +61,8 @@ public class Character : MonoBehaviour
 
         // 캐릭터 정보
         isDead = false;
-        isDamaged = false;
+        if (isDamaged)
+            Damage();
 
         isFirstPersonality = true;
         if (startFirstPersonality)
@@ -138,7 +142,9 @@ public class Character : MonoBehaviour
                         if (aIActionType != AIActionType.Violence && aIActionType != AIActionType.Heal ||
                             aIActionType == AIActionType.Violence && MapManager.GetCharacter(checkArrayPos).isDamaged == false ||
                             aIActionType == AIActionType.Heal && MapManager.GetCharacter(checkArrayPos).isDamaged)
-                        isCheckEnd = true;
+                        {
+                            isCheckEnd = true;
+                        }
                     }
                     break;
                 }
@@ -233,15 +239,18 @@ public class Character : MonoBehaviour
             case AIType.Idle:
                 break;
             case AIType.Move:
-                while (true)
+                bool isMove = false;
+                for(var i = 0; i < 4; i++)
                 {
                     if (MapManager.IsRoad(mapPosition + GetNextMoveDirection(moveDirection)) && MapManager.IsCharacter(mapPosition + GetNextMoveDirection(moveDirection)) == false)
                     {
                         moveDirection = GetNextMoveDirection(moveDirection);
+                        isMove = true;
                         break;
                     }
                     else if (MapManager.IsRoad(mapPosition + moveDirection) && MapManager.IsCharacter(mapPosition + moveDirection) == false)
                     {
+                        isMove = true;
                         break;
                     }
                     else
@@ -249,7 +258,10 @@ public class Character : MonoBehaviour
                         moveDirection = GetNextMoveDirection(moveDirection);
                     }
                 }
-                SetTargetPosition(moveDirection);
+                if (isMove)
+                {
+                    SetTargetPosition(moveDirection);
+                }
                 break;
         }
     }
@@ -305,8 +317,11 @@ public class Character : MonoBehaviour
     }
 
 
-    private static Vector2 GetNextMoveDirection(Vector2 moveDirection)
+    private Vector2 GetNextMoveDirection(Vector2 moveDirection)
     {
+        if (isMoveClockWise == false)
+            moveDirection = -moveDirection;
+
         if (moveDirection == Vector2.up)
             return Vector2.right;
         else if (moveDirection == Vector2.right)
@@ -320,6 +335,8 @@ public class Character : MonoBehaviour
     [ContextMenu("Damage")]
     private void Damage()
     {
+        AudioManager.PlayDamaged();
+        AudioManager.PlayHit();
         isDamaged = true;
         animator.SetTrigger("Damage");
         animator2.SetTrigger("Damage");
@@ -327,6 +344,7 @@ public class Character : MonoBehaviour
     [ContextMenu("Heal")]
     private void Heal()
     {
+        AudioManager.PlayHeal();
         isDamaged = false;
         animator.SetTrigger("Heal");
         animator2.SetTrigger("Heal");
@@ -334,6 +352,8 @@ public class Character : MonoBehaviour
     [ContextMenu("Dead")]
     public void Dead()
     {
+        AudioManager.PlayDead();
+        AudioManager.PlayHit();
         animator.SetTrigger("Dead");
         animator.SetBool("CloseEye", true);
         animator2.SetTrigger("Dead");

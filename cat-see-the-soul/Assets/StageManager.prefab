@@ -159,6 +159,7 @@ MonoBehaviour:
   MovableState: {fileID: 11400000, guid: 4238a0999798c734393650442503f05d, type: 2}
   isGameOver: 0
   VictoryCanvas: {fileID: 2785824682704918086}
+  WastedCanvas: {fileID: 8502006373910599322}
 --- !u!1001 &8502585328593674168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,5 +273,10 @@ RectTransform:
 --- !u!1 &2785824682704918086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6005124073420638718, guid: b1e965be054efd8488669a8de439d3a1, type: 3}
+  m_PrefabInstance: {fileID: 8502585328593674168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8502006373910599322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 687807409047842, guid: b1e965be054efd8488669a8de439d3a1, type: 3}
   m_PrefabInstance: {fileID: 8502585328593674168}
   m_PrefabAsset: {fileID: 0}

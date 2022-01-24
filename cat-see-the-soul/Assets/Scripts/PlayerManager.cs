@@ -11,8 +11,10 @@ public class PlayerManager : MonoBehaviour
     public State MovableState;
 
     public bool isGameOver = false;
+    public bool isGameEnd = false;
 
     public GameObject VictoryCanvas;
+    public GameObject WastedCanvas;
 
     private void Start()
     {
@@ -35,16 +37,20 @@ public class PlayerManager : MonoBehaviour
             _playerCharacter.SetTargetPositionPlayer(inputAxis);
         }
 
-        if (isGameOver == false && MapManager.IsCharacter(_playerCharacter.mapPosition))
+        if (isGameEnd == false && MapManager.IsCharacter(_playerCharacter.mapPosition))
         {
+            isGameEnd = true;
+
             Debug.Log("게임 오버");
             // 게임 오버
             isGameOver = true;
             _playerCharacter.Dead();
             StartCoroutine(GameOver());
         }
-        if (isGameOver == false && _playerCharacter.mapPosition.x == MapManager.Instance.mapSize.x-1)
+        if (isGameEnd == false && _playerCharacter.mapPosition.x == MapManager.Instance.mapSize.x-1)
         {
+            isGameEnd = true;
+            AudioManager.PlayVictory();
             VictoryCanvas.SetActive(true);
             Debug.Log("게임 승리");
             StartCoroutine(GameOver());

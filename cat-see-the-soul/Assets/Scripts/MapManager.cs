@@ -137,6 +137,9 @@ public class MapManager : MonoBehaviour
     }
     public static Character GetCharacter(Vector2 arrayPosition)
     {
+        if (arrayPosition.x < 0 || arrayPosition.x >= Instance.mapSize.x ||
+            arrayPosition.y < 0 || arrayPosition.y >= Instance.mapSize.y)
+            return null;
         return Instance.characterMap[(int)arrayPosition.x, (int)arrayPosition.y];
     }
     public static void SetCharacterMap(Vector2 arrayPosition, Character character)

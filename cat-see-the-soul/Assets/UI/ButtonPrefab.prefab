@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5609266009663362115}
   - component: {fileID: 5609266009663362118}
   - component: {fileID: 5609266009663362113}
+  - component: {fileID: 765578225389167337}
   - component: {fileID: 5609266009663362112}
   m_Layer: 5
   m_Name: ButtonPrefab
@@ -156,6 +157,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &765578225389167337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609266009663362114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19aaa2e2c87d254f9ac8c5dc8237ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 5609266009663362112}
 --- !u!114 &5609266009663362112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,16 +213,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5609266009663362113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIMainScene, Assembly-CSharp
-        m_MethodName: OnLoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 03Stage01
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
